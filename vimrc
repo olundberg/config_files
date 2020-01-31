@@ -11,3 +11,4 @@ nnoremap <silent> <F5> :!python %<CR>
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$/
+set laststatus=2
