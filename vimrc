@@ -13,3 +13,6 @@ autocmd FileType python setlocal omnifunc=python3complete#Complete
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$/
 set laststatus=2
+hi Bang ctermfg=red guifg=red ctermbg=white guibg=white
+match Bang /\%>79v.*\%<81v/
+
