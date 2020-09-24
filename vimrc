@@ -8,6 +8,8 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 autocmd FileType python nnoremap <silent> <F5> :!python %<CR>
+autocmd FileType python nnoremap <silent> <F6> :update<CR>
+autocmd FileType python nnoremap <silent> <F7> :!svn commit -m "New update"<CR>
 autocmd FileType tex,latex nnoremap <silent> <F5> :!pdflatex %<CR>
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 :highlight ExtraWhitespace ctermbg=red guibg=red
