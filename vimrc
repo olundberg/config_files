@@ -17,4 +17,4 @@ autocmd FileType python setlocal omnifunc=python3complete#Complete
 set laststatus=2
 hi Bang ctermfg=red guifg=red ctermbg=white guibg=white
 match Bang /\%>79v.*\%<81v/
-
+:set backspace=indent,eol,start
