@@ -1,0 +1,6 @@
+{
+ "python.linting.enabled": true,
+ "python.linting.flake8Enabled": true,
+ "suggest.enablePreview": true,
+ "python.pythonPath": "~/pyright"
+}
