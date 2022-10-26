@@ -2,5 +2,6 @@
  "python.linting.enabled": true,
  "python.linting.flake8Enabled": true,
  "suggest.enablePreview": true,
+ "python.formatting.blackArgs": ["--target-version", "py310"],
  "python.pythonPath": "~/pyright"
 }
