@@ -17,3 +17,9 @@ Location in Ubuntu
 ```
 ~/.tmux.conf
 ```
+
+## Ranger
+```
+~/.config/ranger/rc.conf
+```
+
