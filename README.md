@@ -11,3 +11,9 @@ Basic vim configuration file.
 4. Install coc-pyright
 
 ## Tmux
+
+Location in Ubuntu
+
+```
+~/.tmux.conf
+```
