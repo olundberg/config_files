@@ -1,3 +1,4 @@
+# Cred to https://stackoverflow.com/questions/1838873/visualizing-branch-topology-in-git
 [alias]
     lg = lg1
     lg1 = lg1-specific --all
