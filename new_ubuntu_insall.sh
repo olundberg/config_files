@@ -20,3 +20,6 @@ sudo apt-get update sudo apt-get install ranger caca-utils highlight atool w3m p
 
 # Tmux
 sudo apt-get install tmux
+
+# Vlc
+sudo snap install vlc
