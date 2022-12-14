@@ -14,3 +14,6 @@ snap install spotify
 # Google Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+# Ranger
+sudo apt-get update sudo apt-get install ranger caca-utils highlight atool w3m poppler-utils mediainfo
