@@ -17,3 +17,6 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 # Ranger
 sudo apt-get update sudo apt-get install ranger caca-utils highlight atool w3m poppler-utils mediainfo
+
+# Tmux
+sudo apt-get install tmux
