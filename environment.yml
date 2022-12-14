@@ -6,3 +6,5 @@ dependencies:
   - pytest
   - numpy
   - pip
+  - flake8
+  - pandas
