@@ -1,0 +1,8 @@
+name: p310
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pytest
+  - numpy
+  - pip
