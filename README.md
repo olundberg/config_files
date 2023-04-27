@@ -6,9 +6,10 @@ Basic vim configuration file.
 ## Vim
 
 1. Install Plug
-2. Install Nodejs
-3. Install coc-nvim
-4. Install coc-pyright
+    * https://github.com/junegunn/vim-plug
+3. Install Nodejs
+4. Install coc-nvim
+5. Install coc-pyright
 
 ## Tmux
 
