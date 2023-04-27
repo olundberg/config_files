@@ -9,7 +9,9 @@ Basic vim configuration file.
     * https://github.com/junegunn/vim-plug
 3. Install Nodejs
 4. Install coc-nvim
-5. Install coc-pyright
+    * https://github.com/neoclide/coc.nvim
+6. Install coc-pyright
+    * https://github.com/fannheyward/coc-pyright
 
 ## Tmux
 
