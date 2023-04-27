@@ -19,6 +19,9 @@ hi Bang ctermfg=red guifg=red ctermbg=white guibg=white
 match Bang /\%>79v.*\%<81v/
 :set backspace=indent,eol,start
 
+call plug#begin()
+	Plug 'neoclide/coc.nvim', {'branch', 'release'}
+call plug#end()
 
 """Coc-NVIM"""
 set updatetime=300
