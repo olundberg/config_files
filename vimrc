@@ -26,10 +26,18 @@ set statusline +=%*%=%5l%*             "current line
 set statusline +=%*/%L%*               "total lines
 set statusline +=%*%4v\ %*             "virtual column number
 
-
+"""Install with :PlugInstall"""
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
 call plug#end()
+
+"""NERDTree binding"""
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
 
 """Coc-NVIM"""
 set updatetime=300
