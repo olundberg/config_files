@@ -19,6 +19,7 @@ hi Bang ctermfg=red guifg=red ctermbg=white guibg=white
 match Bang /\%>79v.*\%<81v/
 :set backspace=indent,eol,start
 
+"""Custom better statusline at the bottom"""
 set statusline=
 set statusline +=%*\ %<%F%*            "full path
 set statusline +=%*%m%*                "modified flag
