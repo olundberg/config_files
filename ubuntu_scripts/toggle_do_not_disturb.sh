@@ -1,4 +1,4 @@
 #/bin/bash
-xrandr --output $(xrandr | grep -w connected | grep -v -e primary | cut -d ' ' -f1) --primary 
-#DISPLAY=:0 /usr/bin/notify-send "Changed primary display"
-zenity --notification --text "Changed primary display"
+# Usually M+i
+gsettings set org.gnome.desktop.notifications show-banners false
+zenity --notification --text "DND 1"
