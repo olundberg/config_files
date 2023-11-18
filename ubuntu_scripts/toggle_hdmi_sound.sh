@@ -1,5 +1,5 @@
 #!/bin/bash
-# Usually M+i
+# Usually Super+Shift+H
 
 current_output=$(pacmd list-cards |
                  grep output\: |
