@@ -5,7 +5,6 @@ current_output=$(pacmd list-cards |
                  grep output\: |
                  grep "active" |
                  grep -Po "output:(\w+)")
-echo $current_output
 
 if [ "$current_output" = "output:analog" ];
 then
