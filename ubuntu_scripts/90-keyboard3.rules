@@ -1,2 +1,2 @@
 KERNEL==”hidraw*”, SUBSYSTEM==”hidraw”, ATTRS{address}==”19:15:bb:69:e7:a1”, \
-    RUN+=”sh /home/oscar/repos/config_files/ubuntu_scripts/toggle_alt_super_keys.sh”
+    RUN+=”sh /home/oscar/repos/config_files/ubuntu_scripts/reverse_alt_super_keys.sh”
