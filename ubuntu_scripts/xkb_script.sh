@@ -51,6 +51,8 @@ EOF
 # below.
 
 setxkbmap -device $remote_id -option altwin:swap_lalt_lwin
+xmodmap -e "keycode 52 = z Z z Z bar less"
+xmodmap -e "keycode 94 = backslash backslash backslash backslash backslash"
 #setxkbmap -device $remote_id -print \
 # | sed 's/\(xkb_symbols.*\)"/\1+custom(remote)"/' \
 # | xkbcomp -I/tmp/xkb -i $remote_id -synch - $DISPLAY 2>/dev/null
