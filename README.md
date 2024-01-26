@@ -26,3 +26,8 @@ Location in Ubuntu
 ~/.config/ranger/rc.conf
 ```
 
+## Neovim
+Create folder if not existing
+```
+~/.config/nvim/init.vim
+```
