@@ -1,5 +1,5 @@
 #!/bin/bash 
-# Usually Super+Shift+H
+# Usually Ctrl+Shift+H
 
 setxkbmap -option altwin:swap_lalt_lwin
 xmodmap -e "keycode 35 = backslash"
