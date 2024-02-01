@@ -1,3 +1,4 @@
+"""~/.config/nvim/init.vim"""
 :imap kj <Esc>
 set clipboard=unnamed
 set number
