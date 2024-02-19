@@ -1,0 +1,7 @@
+# Add to vim settings in the browser
+
+map g1 firstTab 
+map g2 firstTab count=2
+map g3 firstTab count=3
+map g4 firstTab count=4
+map g5 firstTab count=5
