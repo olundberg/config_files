@@ -1,4 +1,5 @@
 #!/bin/bash
+# User together with dash to panel extension
 
 gsettings set org.gnome.shell.keybindings switch-to-application-1 "['<Alt>q']"
 gsettings set org.gnome.shell.keybindings switch-to-application-2 "['<Alt>w']"
