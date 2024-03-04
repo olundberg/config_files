@@ -8,7 +8,9 @@ download-full-page yes
 
 # externel browser
 #browser "/usr/local/bin/w3m %u"
-#macro m set browser "/usr/local/bin/mpv %u"; open-in-browser ; set browser "/usr/local/bin/w3m %u"
+browser "/usr/bin/lynx %u"
+#macro o set browser "/usr/local/bin/mpv %u"; open-in-browser ; #set browser "/usr/local/bin/w3m %u"
+macro l set browser "/usr/local/bin/lynx %u"; open-in-browser ; set browser "/usr/local/bin/w3m %u"
 #macro l set browser "/usr/local/bin/firefox %u"; open-in-browser ; set browser "/usr/local/bin/w3m %u"
 
 # unbind keys
