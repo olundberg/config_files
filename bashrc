@@ -14,6 +14,9 @@ unset color_prompt force_color_prompt
 
 
 # Aliases
+alias gs='git status'
+alias gp='git pull'
+alias gd='git diff'
 alias kge='kubectl get events'
 alias k='kubectl'
 alias kgp='kubectl get pods'
