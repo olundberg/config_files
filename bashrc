@@ -1,3 +1,6 @@
+# ~/.bashrc
+
+# Write git branch in terminal output
 parse_git_branch() {
  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
@@ -10,8 +13,7 @@ fi
 unset color_prompt force_color_prompt
 
 
-
-# Kubernetes aliases
+# Aliases
 alias kge='kubectl get events'
 alias k='kubectl'
 alias kgp='kubectl get pods'
@@ -19,3 +21,4 @@ alias kgn='kubectl get nodes'
 alias ls='ls -l'
 alias gs='git status'
 alias gd='git diff'
+alias ra='ranger'
