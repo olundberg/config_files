@@ -14,6 +14,7 @@ unset color_prompt force_color_prompt
 
 
 # Aliases
+alias gt='git log --graph --pretty=oneline --abbrev-commit'
 alias gl='git log'
 alias gs='git status'
 alias gp='git pull'
