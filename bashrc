@@ -14,6 +14,7 @@ unset color_prompt force_color_prompt
 
 
 # Aliases
+alias gl='git log'
 alias gs='git status'
 alias gp='git pull'
 alias gd='git diff'
