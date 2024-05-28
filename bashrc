@@ -26,4 +26,4 @@ alias kgn='kubectl get nodes'
 alias ls='ls -l'
 alias gs='git status'
 alias gd='git diff'
-alias ra='ranger'
+alias ra='. ranger'  # Exit in current cwd
