@@ -37,6 +37,9 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'APZelos/blamer.nvim'
 call plug#end()
+
+nnoremap <C-t> :NERDTreeToggle<CR>
+
 let g:black_linelength=79
 let g:blamer_enabled=1
 hi Blamer ctermfg=darkgrey
