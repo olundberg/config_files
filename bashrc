@@ -21,8 +21,9 @@ format+='%C(bold 1)%d%C(reset) '
 format+='%C(bold 0)%s%C(reset) '
 alias gt="git log --graph --abbrev-commit --decorate=no \
               --date=format:'%Y-%m-%d %H:%I:%S' \
-              --format=format:'$format'
+              --format=format:'$format' \
               --all"
+unset format
 alias gl='git log'
 alias gs='git status'
 alias gd='git diff'
