@@ -14,7 +14,8 @@ unset color_prompt force_color_prompt
 
 
 # Aliases
-alias gt='git log --graph --pretty=oneline --abbrev-commit'
+#alias gt='git log --graph --pretty=oneline --abbrev-commit'
+alias gt='log --graph --abbrev-commit --decorate=no --date=format:'%Y-%m-%d %H:%I:%S' --format=format:'%C(03)%>|(26)%h%C(reset)  %C(04)%ad%C(reset)  %C(green)%<(16,trunc)%an%C(reset)  %C(bold 1)%d%C(reset) %C(bold 0)%|(1)%s%C(reset)' --all'
 alias gl='git log'
 alias gs='git status'
 alias gd='git diff'
