@@ -18,7 +18,7 @@ format='%C(03)%>|(26)%h%C(reset) '
 format+='%C(04)%ad%C(reset) '
 format+='%C(green)%<(16,trunc)%an%C(reset) '
 format+='%C(bold 1)%d%C(reset) '
-format+='%C(bold 0)%s%C(reset) '
+format+='%C(green bold)%s%C(reset) '
 alias gt="git log --graph --abbrev-commit --decorate=no \
               --date=format:'%Y-%m-%d %H:%I:%S' \
               --format=format:'$format' \
