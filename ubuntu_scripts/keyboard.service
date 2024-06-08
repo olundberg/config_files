@@ -1,0 +1,6 @@
+[Unit]
+Description=Run once
+
+[Service]
+Execstart=/home/oscar/repos/config_files/ubuntu_scripts/xkb_script.sh
+Type=oneshot

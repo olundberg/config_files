@@ -1,17 +1,20 @@
+#!/bin/sh
 # Run xinput list to get keyboard id
 # https://superuser.com/questions/760602/how-to-remap-keys-under-linux-for-a-specific-keyboard-onl://superuser.com/questions/760602/how-to-remap-keys-under-linux-for-a-specific-keyboard-only
+
+#XAUTHORITY="/home/oscar/.Xauthority" 
+#DISPLAY=:0
+logger "Start Run script xkb_script"
 remote_id=$(
     xinput list |
     sed -n 's/.*Bluetooth 3.*id=\([0-9]*\).*keyboard.*/\1/p'
 )
-echo $(xinput list)
-echo $remote_id
-[ "$remote_id" ] || exit
+logger "Start Run script xkb_script 4"
 
 # remap the following keys, only for my custom vintage atari joystick connected
 # through an old USB keyboard:
 #
-# keypad 5 -> keypad 6
+# keypad 5 - keypad 6
 # . -> keypad 2
 # [ -> keypad 8
 # left shift -> left control
@@ -57,3 +60,4 @@ xmodmap -e "keycode 94 = backslash backslash backslash backslash backslash"
 # | sed 's/\(xkb_symbols.*\)"/\1+custom(remote)"/' \
 # | xkbcomp -I/tmp/xkb -i $remote_id -synch - $DISPLAY 2>/dev/null
 echo "Done"
+logger "End Run script xkb_script"
