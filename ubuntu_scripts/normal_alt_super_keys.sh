@@ -4,7 +4,7 @@
 # Usually Ctrl+Shift+J
 
 # Only works with X
-setxkbmap -option # altwin:altwin
+# setxkbmap -option # altwin:altwin
 
 # Use this if on Gnome (Wayland)
 dconf write /org/gnome/desktop/input-sources/xkb-options "['altwin:swap_lalt_lwin']"
