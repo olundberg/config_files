@@ -7,7 +7,7 @@
 # setxkbmap -option # altwin:altwin
 
 # Use this if on Gnome (Wayland)
-dconf write /org/gnome/desktop/input-sources/xkb-options "['altwin:swap_lalt_lwin']"
+dconf write /org/gnome/desktop/input-sources/xkb-options "['altwin:altwin']"
 
 #xmodmap -e "keycode 35 = backslash"
 zenity --notification --text "Normal alt+win"
