@@ -1,8 +1,8 @@
-name: p310
+name: p311
 channels:
   - defaults
 dependencies:
-  - python=3.10
+  - python=3.11
   - pytest
   - numpy
   - pip
