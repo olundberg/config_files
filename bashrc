@@ -36,5 +36,5 @@ alias kgn='kubectl get nodes'
 alias ls='ls -l'
 alias ra='. ranger'  # Exit in current cwd
 alias sb='source ~/.bashrc'
-alias gr=cd '$(git rev-parse --show-toplevel)'  # Go to root in git dir
+alias gr='cd $(git rev-parse --show-toplevel)'  # Go to root in git dir
 
