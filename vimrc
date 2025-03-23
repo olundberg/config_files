@@ -19,6 +19,9 @@ hi Bang ctermfg=red guifg=red ctermbg=white guibg=white
 match Bang /\%>79v.*\%<81v/
 :set backspace=indent,eol,start
 
+au FileType netrw nmap <buffer> h -
+au filetype netrw nmap <buffer> l <CR>
+
 """Custom better statusline at the bottom"""
 set statusline=
 set statusline +=%*\ %<%F%*            "full path
