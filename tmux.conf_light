@@ -1,0 +1,102 @@
+# ~/.tmux.conf
+set-hook -g after-new-session "source-file ~/.tmux.conf"
+bind r source-file ~/.tmux.conf \; display "Reloaded config"
+
+# Bottom bar
+set-option -g status on
+
+# Mouse on to allow copy
+#set-option -g mouse on
+
+
+set -g default-terminal screen-256color
+
+# switch windows alt+number
+bind-key -n M-0 select-window -t 0
+bind-key -n M-1 select-window -t 1
+bind-key -n M-2 select-window -t 2
+bind-key -n M-3 select-window -t 3
+bind-key -n M-4 select-window -t 4
+bind-key -n M-5 select-window -t 5
+bind-key -n M-6 select-window -t 6
+bind-key -n M-7 select-window -t 7
+bind-key -n M-8 select-window -t 8
+bind-key -n M-9 select-window -t 9
+
+# Switch pane in current pane
+bind -n M-h select-pane -L
+bind -n M-j select-pane -D
+bind -n M-k select-pane -U
+bind -n M-l select-pane -R
+
+# Toggle zoom in and zoom out ALT+Z
+bind -n M-s resize-pane -Z
+
+# Resize panes on ALT+key
+bind -n M-u resize-pane -L 20
+bind -n M-i resize-pane -D 10
+bind -n M-o resize-pane -U 10
+bind -n M-p resize-pane -R 20
+
+# Switch pane in nested pane
+bind-key -n C-a send-prefix
+bind-key -n C-h send-prefix \; send-keys Left
+bind-key -n C-j send-prefix \; send-keys Down
+bind-key -n C-k send-prefix \; send-keys Up
+bind-key -n C-l send-prefix \; send-keys Right
+bind-key -n C-s send-prefix \; send-keys z  # Zoom in/out in nested session
+
+# Change timeout time (when going back and forth in panes)
+set-option -g repeat-time 0
+
+# Setup
+kill-session -t main
+new-session -n ranger -s main
+send-keys -t main:ranger "ranger" Enter
+split-window -v
+split-window -h
+
+NAME2=2
+new-window -n $NAME2
+send-keys -t main:$NAME2 "cd repos/" Enter
+split-window -h
+send-keys -t main:$NAME2 "cd repos/" Enter
+split-window -v
+send-keys -t main:$NAME2 "cd repos/" Enter
+select-pane -L
+split-window -v
+send-keys -t main:$NAME2 "cd repos/" Enter
+
+NAME3=3
+new-window -n $NAME3
+send-keys -t main:$NAME3 "cd repos/" Enter
+split-window -h
+send-keys -t main:$NAME3 "cd repos/" Enter
+split-window -v
+send-keys -t main:$NAME3 "cd repos/" Enter
+
+NAME4=4
+new-window -n $NAME4
+send-keys -t main:$NAME4 "cd repos/" Enter
+split-window -h
+send-keys -t main:$NAME4 "cd repos/" Enter
+split-window -v
+send-keys -t main:$NAME4 "cd repos/" Enter
+
+NAME5=5
+new-window -n $NAME5
+send-keys -t main:$NAME5 "cd repos/" Enter
+split-window -h
+send-keys -t main:$NAME5 "cd repos/" Enter
+split-window -v
+send-keys -t main:$NAME5 "cd repos/" Enter
+
+NAME5=6
+new-window -n $NAME6
+send-keys -t main:$NAME6 "cd repos/" Enter
+split-window -h
+send-keys -t main:$NAME6 "cd repos/" Enter
+split-window -v
+send-keys -t main:$NAME6 "cd repos/" Enter
+
+select-window -t :1
