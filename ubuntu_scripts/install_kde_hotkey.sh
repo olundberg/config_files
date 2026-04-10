@@ -5,8 +5,8 @@
 BASE_DIR=$(dirname "$(readlink -f "$0")")
 
 # 2. Define script paths relative to the folder
-SCRIPT_J="$BASE_DIR/my_keybindings.sh"
-SCRIPT_H="$BASE_DIR/another_script.sh"
+SCRIPT_J="$BASE_DIR/reverse_alt_super_keys.sh"
+SCRIPT_H="$BASE_DIR/normal_alt_super_keys.sh"
 
 # Script 1
 NAME_J="Run My Custom Keybindings J"
@@ -28,12 +28,17 @@ register_kde_shortcut() {
     local key=$2
     local path=$3
 
-    # Use kwriteconfig6 (Plasma 6) or kwriteconfig5 (Plasma 5)
-    kwriteconfig6 --file kglobalshortcutsrc --group "commands" --key "$name" "$key,none,$name"
-    kwriteconfig6 --file kglobalshortcutsrc --group "command_scripts" --key "$name" "$path"
+    # 1. Detect which kwriteconfig version is available
+    KWC="kwriteconfig5"
+
+    # 2. Write the configuration
+    $KWC --file kglobalshortcutsrc --group "commands" --key "$name" "$key,none,$name"
+    $KWC --file kglobalshortcutsrc --group "command_scripts" --key "$name" "$path"
     
-    # Trigger reload
-    qdbus6 org.kde.kglobalaccel /kglobalaccel org.kde.KGlobalAccel.rebindShortcut "$name"
+    # 3. Universal DBUS reload (works on Plasma 5 and 6)
+    # This replaces the qdbus6 command
+    dbus-send --type=method_call --dest=org.kde.kglobalaccel \
+        /kglobalaccel org.kde.KGlobalAccel.rebindShortcut string:"$name"
 }
 
 # Apply both
