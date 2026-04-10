@@ -28,7 +28,7 @@ register_kde_shortcut() {
     local key=$2
     local path=$3
 
-    # 1. Detect which kwriteconfig version is available
+    # 1. Detect which kwriteconfig version is available (update to 6?)
     KWC="kwriteconfig5"
 
     # 2. Write the configuration
