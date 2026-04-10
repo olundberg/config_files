@@ -8,13 +8,16 @@ BASE_DIR=$(dirname "$(readlink -f "$0")")
 SCRIPT_J="$BASE_DIR/reverse_alt_super_keys.sh"
 SCRIPT_H="$BASE_DIR/normal_alt_super_keys.sh"
 
+echo $SCRIPT_J
+echo $SCRIPT_H
+
 # Script 1
 NAME_J="Run My Custom Keybindings J"
-HOTKEY_J="Ctrl+Shift+J"
+HOTKEY_J="Ctrl+Shift+j"
 
 # Script 2 (or a different function)
 NAME_H="Run My Custom Keybindings H"
-HOTKEY_H="Ctrl+Shift+H"
+HOTKEY_H="Ctrl+Shift+h"
 
 # --- Logic ---
 
@@ -33,13 +36,18 @@ register_kde_shortcut() {
 
     # 2. Write the configuration
     $KWC --file kglobalshortcutsrc --group "commands" --key "$name" "$key,none,$name"
-    $KWC --file kglobalshortcutsrc --group "command_scripts" --key "$name" "$path"
+    #$KWC --file kglobalshortcutsrc --group "command_scripts" --key "$name" "$path"
+    $KWC --file kglobalshortcutsrc --group "command_scripts" --key "$name" "/bin/bash $path > /tmp/script_log.txt 2>&1"
     
     # 3. Universal DBUS reload (works on Plasma 5 and 6)
     # This replaces the qdbus6 command
     dbus-send --type=method_call --dest=org.kde.kglobalaccel \
         /kglobalaccel org.kde.KGlobalAccel.rebindShortcut string:"$name"
 }
+
+kquitapp5 kglobalaccel 2>/dev/null
+sleep 1
+kglobalaccel5 &
 
 # Apply both
 register_kde_shortcut "$NAME_J" "$HOTKEY_J" "$SCRIPT_J"
