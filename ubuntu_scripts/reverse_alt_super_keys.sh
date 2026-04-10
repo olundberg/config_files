@@ -2,7 +2,7 @@
 # Reverse the ALT and SUPER KEY
 # Reverse this with normal_alt_super_leys.sh
 # Usually Ctrl+Shift+H
-export DISPLAY=:0
+#export DISPLAY=:0
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
     # For Wayland use this instead

@@ -29,30 +29,27 @@ chmod +x "$SCRIPT_H"
 KWC=$(command -v kwriteconfig5 || command -v kwriteconfig6)
 
 # Function to register shortcut (to keep code clean)
-register_kde_shortcut() {
+register_p5_shortcut() {
     local name=$1
     local key=$2
     local path=$3
 
-    # Use whatever version of kwriteconfig we found earlier
-    $KWC --file kglobalshortcutsrc --group "commands" --key "$name" "$key,none,$name"
-    $KWC --file kglobalshortcutsrc --group "command_scripts" --key "$name" "$path"
+    # 1. Write the configuration
+    kwriteconfig5 --file kglobalshortcutsrc --group "commands" --key "$name" "$key,none,$name"
+    kwriteconfig5 --file kglobalshortcutsrc --group "command_scripts" --key "$name" "$path"
     
-    # RELOAD TRIGGER:
-    # Instead of qdbus6, we try the standard qdbus or the universal dbus-send
-    if command -v qdbus &> /dev/null; then
-        qdbus org.kde.kglobalaccel /kglobalaccel org.kde.KGlobalAccel.rebindShortcut "$name"
-    else
-        dbus-send --type=method_call --dest=org.kde.kglobalaccel \
-            /kglobalaccel org.kde.KGlobalAccel.rebindShortcut string:"$name"
-    fi
+    # 2. Use a "Global" reload instead of a specific rebind
+    # This command forces the daemon to refresh its entire internal database
+    dbus-send --type=method_call --dest=org.kde.kglobalaccel \
+        /kglobalaccel org.kde.KGlobalAccel.allShortcutInfos
 }
 
 
-# Apply both
-register_kde_shortcut "$NAME_J" "$HOTKEY_J" "$SCRIPT_J"
-register_kde_shortcut "$NAME_H" "$HOTKEY_H" "$SCRIPT_H"
+# 3. Apply
+register_p5_shortcut "Swap Alt Super" "Ctrl+Shift+J" "$SCRIPT_J"
+register_p5_shortcut "Reset Alt Super" "Ctrl+Shift+H" "$SCRIPT_H"
 
+# 4. Force a global sync
 dbus-send --type=method_call --dest=org.kde.kglobalaccel /kglobalaccel org.kde.KGlobalAccel.allShortcutInfos
 
 echo "Success: Registered J ($HOTKEY_J) and H ($HOTKEY_H)"
