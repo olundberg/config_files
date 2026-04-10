@@ -13,11 +13,11 @@ echo $SCRIPT_H
 
 # Script 1
 NAME_J="Run My Custom Keybindings J"
-HOTKEY_J="Ctrl+Shift+j"
+HOTKEY_J="Ctrl+Shift+J"
 
 # Script 2 (or a different function)
 NAME_H="Run My Custom Keybindings H"
-HOTKEY_H="Ctrl+Shift+h"
+HOTKEY_H="Ctrl+Shift+H"
 
 # --- Logic ---
 
@@ -25,32 +25,34 @@ HOTKEY_H="Ctrl+Shift+h"
 chmod +x "$SCRIPT_J"
 chmod +x "$SCRIPT_H"
 
+# Determine Tool Version
+KWC=$(command -v kwriteconfig5 || command -v kwriteconfig6)
+
 # Function to register shortcut (to keep code clean)
 register_kde_shortcut() {
     local name=$1
     local key=$2
     local path=$3
 
-    # 1. Detect which kwriteconfig version is available (update to 6?)
-    KWC="kwriteconfig5"
-
-    # 2. Write the configuration
+    # Use whatever version of kwriteconfig we found earlier
     $KWC --file kglobalshortcutsrc --group "commands" --key "$name" "$key,none,$name"
-    #$KWC --file kglobalshortcutsrc --group "command_scripts" --key "$name" "$path"
-    $KWC --file kglobalshortcutsrc --group "command_scripts" --key "$name" "/bin/bash $path > /tmp/script_log.txt 2>&1"
+    $KWC --file kglobalshortcutsrc --group "command_scripts" --key "$name" "$path"
     
-    # 3. Universal DBUS reload (works on Plasma 5 and 6)
-    # This replaces the qdbus6 command
-    dbus-send --type=method_call --dest=org.kde.kglobalaccel \
-        /kglobalaccel org.kde.KGlobalAccel.rebindShortcut string:"$name"
+    # RELOAD TRIGGER:
+    # Instead of qdbus6, we try the standard qdbus or the universal dbus-send
+    if command -v qdbus &> /dev/null; then
+        qdbus org.kde.kglobalaccel /kglobalaccel org.kde.KGlobalAccel.rebindShortcut "$name"
+    else
+        dbus-send --type=method_call --dest=org.kde.kglobalaccel \
+            /kglobalaccel org.kde.KGlobalAccel.rebindShortcut string:"$name"
+    fi
 }
 
-kquitapp5 kglobalaccel 2>/dev/null
-sleep 1
-kglobalaccel5 &
 
 # Apply both
 register_kde_shortcut "$NAME_J" "$HOTKEY_J" "$SCRIPT_J"
 register_kde_shortcut "$NAME_H" "$HOTKEY_H" "$SCRIPT_H"
+
+dbus-send --type=method_call --dest=org.kde.kglobalaccel /kglobalaccel org.kde.KGlobalAccel.allShortcutInfos
 
 echo "Success: Registered J ($HOTKEY_J) and H ($HOTKEY_H)"
