@@ -10,6 +10,7 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 elif [ "$XDG_SESSION_TYPE" = "x11" ]; then
     # Only works on X
     setxkbmap -option altwin:swap_lalt_lwin
+    zenity --notification --text "Reverse alt+win"
 else
     echo "Could not detect session type (Environment: $XDG_SESSION_TYPE)"
 fi

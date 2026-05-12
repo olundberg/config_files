@@ -6,12 +6,14 @@
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
     # For Wayland use this instead
     dconf write /org/gnome/desktop/input-sources/xkb-options "['altwin:altwin']"
+    zenity --notification --text "Normal alt+win (Wayland)"
 elif [ "$XDG_SESSION_TYPE" = "x11" ]; then
     # Only works on X
-    setxkbmap -option # altwin:altwin
+    setxkbmap -option altwin:altwin
+    zenity --notification --text "Normal alt+win (X11)"
 else
     echo "Could not detect session type (Environment: $XDG_SESSION_TYPE)"
 fi
 
 #xmodmap -e "keycode 35 = backslash"
-zenity --notification --text "Normal alt+win"
+#zenity --notification --text "Normal alt+win"
