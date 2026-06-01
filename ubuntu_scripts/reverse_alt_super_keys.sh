@@ -4,6 +4,9 @@
 # Usually Ctrl+Shift+H
 #export DISPLAY=:0
 
+# NOTE, if it doesnt take effect, logout and in might do,
+# ASK Gemini how to make it take effect immediately instead
+
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
     # For Wayland use this instead
     dconf write /org/gnome/desktop/input-sources/xkb-options "['altwin:swap_lalt_lwin']"
