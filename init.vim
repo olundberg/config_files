@@ -33,6 +33,33 @@ set statusline +=%*%4v\ %*             "virtual column number
 au FileType netrw nmap <buffer> h -
 au FileType netrw nmap <buffer> l <CR>
 
+" Make Ranger replace Netrw completely
+let g:rnvimr_enable_ex = 1
+
+tnoremap <silent> <M-f> <C-\><C-n>:RnvimrToggle<CR>
+nnoremap <silent> <M-f> :RnvimrToggle<CR>
+
+let g:rnvimr_draw_border = 0
+
+
+" 2. Tell Ranger to use outline mode
+let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set draw_borders both']
+
+" 3. Reset the layout style back to its standard crisp structure
+let g:rnvimr_layout = {
+            \ 'relative': 'editor',
+            \ 'width': float2nr(round(0.90 * &columns)),
+            \ 'height': float2nr(round(0.85 * &lines)),
+            \ 'col': float2nr(round(0.05 * &columns)),
+            \ 'row': float2nr(round(0.05 * &lines)),
+            \ 'style': 'minimal',
+            \ 'border': 'single'
+            \ }
+
+
+" 4. Enforce clean white highlight bounds
+highlight FloatBorder guifg=#ffffff guibg=NONE
+highlight RnvimrNormal guifg=#ffffff guibg=NONE
 """Install with :PlugInstall"""
 call plug#begin()
 Plug 'preservim/nerdtree'
@@ -45,6 +72,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'iberianpig/ranger-explorer.vim'
 "Plug 'rbgrouleff/bclose.vim'
+Plug 'kevinhwang91/rnvimr'
 call plug#end()
 
 """nnoremap <C-t> :NERDTreeToggle<CR>"""
