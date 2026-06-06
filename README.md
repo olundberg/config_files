@@ -3,7 +3,7 @@ Vim configuration file
 
 Basic vim configuration file.
 
-## Vim
+## Neovim/Vim
 
 1. Install Plug
     * https://github.com/junegunn/vim-plug
@@ -12,6 +12,8 @@ Basic vim configuration file.
     * https://github.com/neoclide/coc.nvim
 6. Install coc-pyright
     * https://github.com/fannheyward/coc-pyright
+
+Remember to install pynvim and something more for ranger in vim to work
 
 ## Tmux
 
