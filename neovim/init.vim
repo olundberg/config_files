@@ -37,7 +37,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'APZelos/blamer.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'kevinhwang91/rnvimr'
+Plug 'kevinhwang91/rnvimr'  # Ranger in Vim
 call plug#end()
 
 
