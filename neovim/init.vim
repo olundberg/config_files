@@ -17,7 +17,7 @@ au FileType python setlocal formatprg=autopep8\ -
 hi Bang ctermfg=red guifg=red ctermbg=white guibg=white
 highlight SignColumn ctermbg=black
 :set backspace=indent,eol,start
-"""Custom better statusline at the bottom"""
+"Custom better statusline at the bottom
 set statusline=
 set statusline +=%*\ %<%F%*            "full path
 set statusline +=%*%m%*                "modified flag
@@ -27,16 +27,16 @@ set statusline +=%*%4v\ %*             "virtual column number
 au FileType netrw nmap <buffer> h -
 au FileType netrw nmap <buffer> l <CR>
 
-"""Install with :PlugInstall"""
+"""Plug: Install with :PlugInstall"""
 call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'APZelos/blamer.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'APZelos/blamer.nvim'
 Plug 'kevinhwang91/rnvimr'  # Ranger in Vim
 call plug#end()
 
