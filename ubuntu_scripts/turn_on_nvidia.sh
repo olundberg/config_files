@@ -4,4 +4,4 @@
 # Usually Ctrl+Shift+J
 
 sudo prime-select nvidia
-zenity --notification --text "Turned off Nvidia, reboot computer"
+zenity --notification --text "Turned on Nvidia, reboot computer"
