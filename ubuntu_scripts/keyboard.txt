@@ -1,0 +1,13 @@
+I: Bus=0005 Vendor=04e8 Product=7021 Version=011b
+N: Name="Bluetooth 3.0 Keyboard"
+P: Phys=04:7b:cb:cd:86:db
+S: Sysfs=/devices/virtual/misc/uhid/0005:04E8:7021.0002/input/input20
+U: Uniq=19:15:bb:69:e7:a1
+H: Handlers=sysrq kbd event14 leds 
+B: PROP=0
+B: EV=12001b
+B: KEY=4 0 1 0 0 0 40000000000000 0 1000302000007 ff9f387ad941d7ff febeffdfffefffff fffffffffffffffe
+B: ABS=10000000000
+B: MSC=10
+B: LED=1f
+

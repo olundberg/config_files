@@ -1,0 +1,6 @@
+# /etc/udevhwdb.d/99-bluetooth-keyboard.hwdb
+# sudo systemd-hwdb update
+# sudo udevadm trigger --verbose --sysname-match="event*"
+evdev:input:b0005v04E8p7021*
+ KEYBOARD_KEY_700e2=leftmeta
+ KEYBOARD_KEY_700e3=leftalt
