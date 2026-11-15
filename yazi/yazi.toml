@@ -1,5 +1,8 @@
 # ~/.config/yazi/yazi.toml
 
+[mgr]
+ratio = [ 1, 3, 4 ]
+
 [[plugin.prepend_fetchers]]
 url   = "*"
 run   = "git"
