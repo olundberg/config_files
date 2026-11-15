@@ -1,0 +1,11 @@
+# ~/.config/yazi/keymap.toml
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "r" ]
+run  = "cd ~/repos"
+desc = "Go to ~/repos"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "o" ]
+run  = "cd ~/orepos"
+desc = "Go to ~/orepos"

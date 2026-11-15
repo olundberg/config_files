@@ -35,7 +35,7 @@ Copy the files from this folder to `~/.config/yazi/`:
 
 ```bash
 mkdir -p ~/.config/yazi/plugins
-cp -r init.lua yazi.toml package.toml ~/.config/yazi/
+cp -r init.lua yazi.toml keymap.toml package.toml ~/.config/yazi/
 cp -r plugins/subrepo-git.yazi ~/.config/yazi/plugins/
 ```
 
