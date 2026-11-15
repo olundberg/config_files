@@ -1,0 +1,16 @@
+# ~/.config/yazi/yazi.toml
+
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "subrepo-git"
+group = "subrepo-git"
