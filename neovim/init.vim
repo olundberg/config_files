@@ -37,7 +37,9 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'APZelos/blamer.nvim'
-Plug 'kevinhwang91/rnvimr'  # Ranger in Vim
+"Plug 'kevinhwang91/rnvimr'  " Ranger in Vim
+Plug 'nvim-lua/plenary.nvim'
+Plug 'mikavilpas/yazi.nvim'
 call plug#end()
 
 
@@ -48,32 +50,25 @@ let g:ranger_explorer_keymap_tabedit = '<C-t>'
 let g:blamer_enabled=1
 hi Blamer ctermfg=darkgrey
 
-" Plugin: RNVIMR
+" Yazi integration (yazi.nvim)
 let $VISUAL = 'nvim'
 let $EDITOR = 'nvim'
 let g:NERDTreeHijackNetrw = 0
-let g:rnvimr_vanilla = 1
-let g:rnvimr_enable_picker = 1
-let g:rnvimr_enable_ex = 1
-tnoremap <silent> <M-f> <C-\><C-n>:RnvimrToggle<CR>
-nnoremap <silent> <M-f> :RnvimrToggle<CR>
-let g:rnvimr_draw_border = 0
-let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set draw_borders both', '--cmd=set status_bar_on_top false']
-let g:rnvimr_layout = {
-            \ 'relative': 'editor',
-            \ 'width': float2nr(round(0.90 * &columns)),
-            \ 'height': float2nr(round(0.85 * &lines)),
-            \ 'col': float2nr(round(0.05 * &columns)),
-            \ 'row': float2nr(round(0.05 * &lines)),
-            \ 'style': 'minimal',
-            \ 'border': 'single'
-            \ }
-highlight FloatBorder guifg=#ffffff guibg=NONE
-highlight RnvimrNormal guifg=#ffffff guibg=NONE
-let g:rnvimr_action = {
-            \ '<C-t>': 'NvimEdit tabedit',
-            \ '<C-x>': 'NvimEdit split',
-            \ '<C-v>': 'NvimEdit vsplit',
-            \ 'gw': 'JumpNvimCwd',
-            \ 'yw': 'EmitRangerCwd'
-            \ }
+let g:loaded_netrwPlugin = 1
+command! -nargs=? -complete=dir Explore Yazi
+command! -nargs=? -complete=dir Ex Yazi
+cnoreabbrev <expr> explore (getcmdtype() == ':' && getcmdline() ==# 'explore') ? 'Yazi' : 'explore'
+cnoreabbrev <expr> ex (getcmdtype() == ':' && getcmdline() ==# 'ex') ? 'Yazi' : 'ex'
+nnoremap <silent> <Leader>- :Yazi<CR>
+nnoremap <silent> <Leader>n :Yazi<CR>
+nnoremap <silent> <Leader>cw :Yazi cwd<CR>
+nnoremap <silent> <M-f> :Yazi toggle<CR>
+
+lua << LUA_EOF
+local ok, yazi = pcall(require, "yazi")
+if ok then
+  yazi.setup({
+    open_for_directories = true,
+  })
+end
+LUA_EOF

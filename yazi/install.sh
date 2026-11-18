@@ -54,6 +54,15 @@ fi
 
 echo "==> [4/4] Configuring Neovim ($NVIM_INIT) to use Yazi..."
 mkdir -p "$(dirname "$NVIM_INIT")"
+
+# Ensure vim-plug is installed so plug#begin() and :PlugInstall work on a new machine
+PLUG_VIM="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim"
+if [ ! -f "$PLUG_VIM" ]; then
+    echo "Installing vim-plug to $PLUG_VIM..."
+    mkdir -p "$(dirname "$PLUG_VIM")"
+    curl -fsSL "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" -o "$PLUG_VIM"
+fi
+
 if [ ! -f "$NVIM_INIT" ]; then
     if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/../neovim/init.vim" ]; then
         cp "$SCRIPT_DIR/../neovim/init.vim" "$NVIM_INIT"
@@ -63,14 +72,25 @@ if [ ! -f "$NVIM_INIT" ]; then
 fi
 
 if [ -f "$NVIM_INIT" ]; then
+    # Fix invalid '# Ranger in Vim' comment if present from older neovim/init.vim
+    if grep -q "Plug 'kevinhwang91/rnvimr'.*#" "$NVIM_INIT"; then
+        sed -i "s/\(Plug 'kevinhwang91\/rnvimr'.*\)#/\1\"/" "$NVIM_INIT"
+    fi
+
     # 1. Add plenary.nvim and yazi.nvim inside plug#begin() .. plug#end() if not already present
     if ! grep -q "mikavilpas/yazi.nvim" "$NVIM_INIT"; then
         if grep -q "call plug#end()" "$NVIM_INIT"; then
-            sed -i "/call plug#end()/i Plug 'nvim-lua/plenary.nvim'\nPlug 'mikavilpas/yazi.nvim'" "$NVIM_INIT"
+            if ! grep -q "nvim-lua/plenary.nvim" "$NVIM_INIT"; then
+                sed -i "/call plug#end()/i Plug 'nvim-lua/plenary.nvim'" "$NVIM_INIT"
+            fi
+            sed -i "/call plug#end()/i Plug 'mikavilpas/yazi.nvim'" "$NVIM_INIT"
             echo "Added plenary.nvim and yazi.nvim to plug#begin() in $NVIM_INIT"
         else
             echo "Warning: 'call plug#end()' not found in $NVIM_INIT. Please add Plug 'mikavilpas/yazi.nvim' manually."
         fi
+    elif ! grep -q "nvim-lua/plenary.nvim" "$NVIM_INIT"; then
+        sed -i "/mikavilpas\/yazi.nvim/i Plug 'nvim-lua/plenary.nvim'" "$NVIM_INIT"
+        echo "Added missing dependency plenary.nvim to $NVIM_INIT"
     fi
 
     # 2. Append Yazi configuration block if not already present
@@ -103,8 +123,13 @@ EOF
 
     # 3. Install Neovim plugins headlessly via vim-plug
     if command -v nvim >/dev/null 2>&1; then
-        echo "Running :PlugInstall in Neovim..."
-        nvim --headless +PlugInstall +qall >/dev/null 2>&1 || true
+        echo "Running :PlugInstall --sync in Neovim..."
+        if ! nvim --headless +'PlugInstall --sync' +qa; then
+            echo "Warning: Headless :PlugInstall encountered an issue. You can run :PlugInstall inside nvim manually."
+        fi
+    else
+        echo "Warning: 'nvim' is not installed or not in PATH; skipping :PlugInstall."
+        echo "Once Neovim is installed, open 'nvim' and run :PlugInstall."
     fi
 fi
 
